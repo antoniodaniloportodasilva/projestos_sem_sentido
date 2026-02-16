@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Wi-Fi AKATSUKI — Terminal Ninja</title>
+
+<style>
+:root{
+  --bg:#000000;
+  --panel:#0a0a0a;
+  --red:#ff0000;
+  --red-soft:#ff3b3b;
+  --muted:#666;
+  --mono:'Courier New', Courier, monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:radial-gradient(circle at center, #1a0000 0%, #000 80%);
+  font-family:var(--mono);
+  color:var(--red-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  padding:20px;
+  overflow:hidden;
+}
+
+/* Efeito scanline estilo terminal */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,0,0,0.05) 0px,
+    rgba(255,0,0,0.05) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events:none;
+}
+
+/* CARD TERMINAL */
+.card{
+  width:900px;
+  max-width:100%;
+  background:var(--panel);
+  border-radius:12px;
+  border:1px solid rgba(255,0,0,.3);
+  box-shadow:0 0 60px rgba(255,0,0,.25);
+  overflow:hidden;
+  position:relative;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:25px 30px;
+  border-bottom:1px solid rgba(255,0,0,.2);
+}
+
+/* Espaço real para logotipo */
+.logo{
+  width:75px;
+  height:75px;
+  background:#050505;
+  border:1px solid rgba(255,0,0,.4);
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.logo img{
+  max-width:100%;
+  max-height:100%;
+}
+
+/* Título estilo terminal */
+.title{
+  font-size:20px;
+  color:var(--red);
+  letter-spacing:3px;
+  text-shadow:0 0 10px rgba(255,0,0,.7);
+}
+
+/* CONTENT */
+.content{
+  padding:40px;
+}
+
+.line{
+  display:flex;
+  gap:15px;
+  margin:18px 0;
+  font-size:16px;
+}
+
+.label{
+  width:130px;
+  color:var(--muted);
+}
+
+.value{
+  color:var(--red-soft);
+  font-weight:bold;
+  text-shadow:0 0 8px rgba(255,0,0,.5);
+}
+
+/* Cursor piscando estilo terminal */
+.value::after{
+  content:"_";
+  animation:blink 1s infinite;
+  margin-left:4px;
+}
+
+@keyframes blink{
+  0%,50%,100%{opacity:1}
+  25%,75%{opacity:0}
+}
+
+/* BOTÃO */
+button{
+  margin-top:30px;
+  padding:12px 20px;
+  background:transparent;
+  border:1px solid var(--red);
+  color:var(--red);
+  border-radius:6px;
+  cursor:pointer;
+  font-family:var(--mono);
+  transition:.3s;
+  font-size:14px;
+}
+
+button:hover{
+  background:var(--red);
+  color:black;
+  box-shadow:0 0 20px rgba(255,0,0,.8);
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:15px;
+  font-size:12px;
+  color:var(--muted);
+  border-top:1px solid rgba(255,0,0,.2);
+}
+
+/* RESPONSIVO */
+@media (max-width:600px){
+  .content{padding:25px}
+  .line{flex-direction:column;gap:6px}
+  .label{width:auto}
+  .title{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="header">
+
+    <!-- COLOQUE SUA LOGO AQUI -->
+    <div class="logo">
+      <!-- Exemplo:
+      <img src="logo.png" alt="Logo">
+      -->
+      <img src="minha_logo.png" alt="Logo">
+    </div>
+
+    <div class="title">
+      ☁ WI-FI AKATSUKI — TERMINAL ACCESS
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="line">
+      <div class="label">SSID:</div>
+      <div class="value">AKATSUKI</div>
+    </div>
+
+    <div class="line">
+      <div class="label">Segurança:</div>
+      <div class="value">WPA2</div>
+    </div>
+
+    <div class="line">
+      <div class="label">Senha:</div>
+      <div class="value" id="senha">@ADSP!!#2026</div>
+    </div>
+
+    <button onclick="navigator.clipboard.writeText('@ADSP!!#2026')">
+      📋 Copiar Senha
+    </button>
+
+  </div>
+
+  <div class="footer">
+    ADPS Tech Solutions — Rede Privada ☁
+  </div>
+
+</div>
+
+</body>
+</html>
